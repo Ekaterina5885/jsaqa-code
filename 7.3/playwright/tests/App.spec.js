@@ -1,22 +1,33 @@
-const { test, expect } = require("@playwright/test");
+const { test, expect } = require('@playwright/test');
+const { chromium } = require('playwright');
+const { mail, password } = require('../user.js');
 
-test("test", async ({ page }) => {
-  // Go to https://netology.ru/free/management#/
-  await page.goto("https://netology.ru/free/management#/");
+test('Successful authorization', async ({ page }) => {
+	await page.goto('https://netology.ru/');
+	await page.screenshot({ path: 'screenshot/Successful.png' });
+	await page.click('text=Войти');
+	await expect(page).toHaveURL('https://netology.ru/?modal=sign_in');
+	await page.fill('[placeholder="Email"]', mail);
+	await page.fill('[placeholder="Пароль"]', password);
+	await page.click('text=Войти');
+	await page.screenshot({ path: 'screenshot/Successful.png' });
 
-  // Click a
-  await page.click("a");
-  await expect(page).toHaveURL("https://netology.ru/");
+	await expect(page.locator('text=Мои курсы и профессии')).toBeVisible();
+	await page.screenshot({ path: 'screenshot/Successful.png' });
+});
 
-  // Click text=Учиться бесплатно
-  await page.click("text=Учиться бесплатно");
-  await expect(page).toHaveURL("https://netology.ru/free");
+test('Unsuccessful authorization', async ({ page }) => {
+	await page.goto('https://netology.ru/');
+	await page.screenshot({ path: 'screenshot/Unsuccessful.png' });
+	await page.click('text=Войти');
+	await expect(page).toHaveURL('https://netology.ru/?modal=sign_in');
+	await page.fill('[placeholder="Email"]', '1111@mail.ru');
+	await page.fill('[placeholder="Пароль"]', password);
+	await page.click('text=Войти');
+	await page.screenshot({ path: 'screenshot/Unsuccessful.png' });
 
-  page.click("text=Бизнес и управление");
-
-  // Click text=Как перенести своё дело в онлайн
-  await page.click("text=Как перенести своё дело в онлайн");
-  await expect(page).toHaveURL(
-    "https://netology.ru/programs/kak-perenesti-svoyo-delo-v-onlajn-bp"
-  );
+	await expect(
+		page.locator('text=Вы ввели неправильно логин или пароль')
+	).toBeVisible();
+	await page.screenshot({ path: 'screenshot/Unsuccessful.png' });
 });

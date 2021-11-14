@@ -1,19 +1,47 @@
 {
-  "name": "jsaqa_3",
-  "version": "1.0.0",
-  "description": "jest test",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "keywords": [
-    "jest",
-    "test",
-    "jsaqa"
-  ],
-  "author": "omelnikova",
-  "license": "ISC",
-  "devDependencies": {
-    "jest": "^27.3.1"
-  }
+	"name": "jsaqa_3",
+	"version": "1.0.0",
+	"description": "jest test",
+	"main": "index.js",
+	"scripts": {
+		"test": "jest",
+		"coverage": "jest --collectCoverage",
+		"test:report": "jest --reporters='jest-html-reporter'"
+	},
+	"collectCoverageFrom": [
+		"**/*.{js,jsx}"
+	],
+	"coveragePathIgnorePatterns": [
+		"node_modules",
+		"coverage",
+		"test-report.html"
+	],
+	"coverageThreshold": {
+		"branches": 100,
+		"functions": 100,
+		"lines": 100
+	},
+	"reporters": [
+		"default",[
+		"./node_modules/jest-html-reporter",{
+	"pageTitle": 
+	    "Test Report"}]
+	],
+	"keywords": [
+		"jest",
+		"test",
+		"jsaqa"
+	],
+	"author": "omelnikova",
+	"license": "ISC",
+	"devDependencies": {
+		"eslint": "^8.2.0",
+		"eslint-config-node": "^2.0.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"jest": "^27.3.1",
+		"jest-html-reporter": "^3.4.1",
+		"prettier": "^2.4.1"
+	}
 }
