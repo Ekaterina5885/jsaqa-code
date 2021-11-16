@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const { chromium } = require('playwright');
 const { mail, password } = require('../user.js');
 
-test('Successful authorization', async ({ page }) => {
+test('Should be successful authorization', async ({ page }) => {
 	await page.goto('https://netology.ru/');
 	await page.screenshot({ path: 'screenshot/Successful.png' });
 	await page.click('text=Войти');
@@ -16,7 +16,7 @@ test('Successful authorization', async ({ page }) => {
 	await page.screenshot({ path: 'screenshot/Successful.png' });
 });
 
-test('Unsuccessful authorization', async ({ page }) => {
+test('Should be unsuccessful authorization', async ({ page }) => {
 	await page.goto('https://netology.ru/');
 	await page.screenshot({ path: 'screenshot/Unsuccessful.png' });
 	await page.click('text=Войти');
