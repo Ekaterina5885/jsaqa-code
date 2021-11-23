@@ -14,7 +14,7 @@ describe("Books names test suit", () => {
 			"Гарри Поттер",
 		]);
 	});
-  it("Books names should not be sorted in ascending order", () => {
+  it("Should not sort the titles of the same books in ascending order", () => {
 		expect(
 			sorting.sortByName([
 				"Малыш и Карлсон",

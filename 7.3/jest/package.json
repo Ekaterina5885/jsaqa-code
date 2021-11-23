@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "jest",
 		"coverage": "jest --collectCoverage",
-		"test:report": "jest --reporters='jest-html-reporter'"
+		"report": "jest --reporters='jest-html-reporter'"
 	},
 	"collectCoverageFrom": [
 		"**/*.{js,jsx}"
@@ -22,11 +22,14 @@
 		"lines": 100
 	},
 	"reporters": [
-		"default",[
-		"./node_modules/jest-html-reporter",{
-	"pageTitle": 
-	    "Test Report"}]
-	],
+		"default",
+	   "./node_modules/jest-html-reporter", {
+	   "pageTitle": "Test Report",
+	   "outputPath": "test-report/index.html",
+	   "includeFailureMsg": false,
+	   "styleOverridePath": "src/teststyle.css"
+		}
+	   ],
 	"keywords": [
 		"jest",
 		"test",
